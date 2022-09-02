@@ -1,0 +1,15 @@
+{
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cnsportal-main-144342-authRole",
+      "UnauthRoleArn": "arn:aws:iam::332409747112:role/amplify-cnsportal-main-144342-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::332409747112:role/amplify-cnsportal-main-144342-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cnsportal-main-144342-deployment",
+      "UnauthRoleName": "amplify-cnsportal-main-144342-unauthRole",
+      "StackName": "amplify-cnsportal-main-144342",
+      "StackId": "arn:aws:cloudformation:us-east-1:332409747112:stack/amplify-cnsportal-main-144342/a3ea58a0-2acd-11ed-8d82-121cd52c5de5",
+      "AmplifyAppId": "dvgwn7tpkbshq"
+    }
+  }
+}
