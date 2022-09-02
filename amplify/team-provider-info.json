@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyaeccbe3959334-staging-201737-authRole",
+      "UnauthRoleArn": "arn:aws:iam::332409747112:role/amplify-amplifyaeccbe3959334-staging-201737-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::332409747112:role/amplify-amplifyaeccbe3959334-staging-201737-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifyaeccbe3959334-staging-201737-deployment",
+      "UnauthRoleName": "amplify-amplifyaeccbe3959334-staging-201737-unauthRole",
+      "StackName": "amplify-amplifyaeccbe3959334-staging-201737",
+      "StackId": "arn:aws:cloudformation:us-east-1:332409747112:stack/amplify-amplifyaeccbe3959334-staging-201737/1f5694e0-2a33-11ed-a584-0eff8712101f",
+      "AmplifyAppId": "d3pd0604gf8ipa"
+    },
+    "categories": {
+      "auth": {
+        "cnsemployeeportal": {}
+      }
+    }
+  }
+}
