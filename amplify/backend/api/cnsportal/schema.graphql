@@ -1,0 +1,75 @@
+type Applicant @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  customerID: ID! @index(name: "byCustomer")
+  driversLicenseFront: String
+  driversLicenseBack: String
+  medCardPic: String
+  medicalCardFile: String
+  firstName: String
+  lastName: String
+  otherName: String
+  birthDate: AWSDate
+  phone: AWSPhone
+  ssnNumber: String
+  email: AWSEmail
+  education: String
+  appliedFor: String
+  howDidYouHear: String
+  workedHereBefore: String
+  workedFrom: AWSDate
+  workedTo: AWSDate
+  reasonForLeaving: String
+  jobPerformanceIssues: String
+  currentAddress: String
+  currentCity: String
+  currentState: String
+  currentZip: String
+  checkaddress: Boolean
+  previousAddresses: [AWSJSON]
+  previousEmployers: [AWSJSON]
+  qualifications: [AWSJSON]
+  accidentRecords: [AWSJSON]
+  violationRecords: [AWSJSON]
+  driversLicenseNumber: String
+  driversLicenseState: String
+  currentLicenseType: String
+  licenseExpiration: AWSDate
+  licenseRevocation: String
+  endorsementNone: Boolean
+  endorsementT: Boolean
+  endorsementP: Boolean
+  endorsementN: Boolean
+  endorsementH: Boolean
+  endorsementX: Boolean
+  endorsementS: Boolean
+  restrictionNone: Boolean
+  restrictionL: Boolean
+  restrictionZ: Boolean
+  restrictionE: Boolean
+  restrictionO: Boolean
+  restrictionM: Boolean
+  restrictionN: Boolean
+  restrictionV: Boolean
+  status: String
+  drivingExperiences: [AWSJSON]
+}
+
+type Customer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  accountName: String
+  dba: String
+  dot: String
+  mc: String
+  Applicants: [Applicant] @hasMany(indexName: "byCustomer", fields: ["id"])
+  Contacts: [Contact] @hasMany(indexName: "byCustomer", fields: ["id"])
+  PrimaryContact: Contact @hasOne
+}
+
+type Contact @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  customerID: ID! @index(name: "byCustomer")
+  firstName: String
+  lastName: String
+  phone: AWSPhone
+  email: AWSEmail
+} 

@@ -1,7 +1,9 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, Container } from "@mui/material";
 import CustomerNav from "./CustomerNav";
 import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { getCustomer } from '../../graphql/queries';
 
 const CustomerLayout = () => {
   let { customerID } = useParams();
@@ -15,62 +17,30 @@ const CustomerLayout = () => {
 
   //Fetch the customer Data
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`/customer/${customerID.toString()}`);
-
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const customer = await response.json();
-      if (!customer) {
-        window.alert(`Record with id ${customerID} not found`);
-        navigate("/");
-        return;
-      }
-
-      setCustomer(customer);
+    async function getCustomerData() {
+      const c = await API.graphql(graphqlOperation(getCustomer, { id: customerID }));
+      setCustomer(c.data.getCustomer);
     }
 
-    fetchData();
+    getCustomerData();
 
     return;
   }, [customerID]);
 
   return (
     <>
-      {customer ? (
-        <>
-          <Box
-            sx={{
-              pl: 2,
-              pr: 5,
-              pt: 2,
-              pb: 1,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Typography type="h2" variant="h6">
-              {customer.name}
-            </Typography>
-            <Button
-              sx={{ marginLeft: "auto" }}
-              variant="contained"
-              onClick={handleDQFClick}
-            >
-              Start New Hire
-            </Button>
-          </Box>
-          <Box sx={{ display: "flex" }}>
-            <CustomerNav />
-            <Box sx={{ px: 5, py: 3, flexGrow: 1 }}>
+      {customer ? (     
+        <Container maxWidth="lg" sx={{ mt: 3 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={3}>
+              <CustomerNav accountName={customer.accountName} />
+            </Grid>
+            <Grid item xs={12} md={9}>
+              
               <Outlet context={[customer, setCustomer]} />
-            </Box>
-          </Box>
-        </>
+            </Grid>
+          </Grid>
+        </Container>
       ) : (
         ""
       )}

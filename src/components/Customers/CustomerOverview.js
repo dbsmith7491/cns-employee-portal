@@ -7,22 +7,23 @@ const CustomerOverview = () => {
   const [customer, setCustomer] = useOutletContext();
   const [submitData, setSubmitData] = useState();
 
+  /*
   const contactData = [
     {
       label: "Name",
-      value: customer.primaryContact.name,
+      value: customer.PrimaryContact.firstName + " " + customer.primaryContact.lastName,
       type: "text",
       key: "name",
     },
     {
       label: "Phone",
-      value: customer.primaryContact.phone,
+      value: customer.PrimaryContact.phone,
       type: "phone",
       key: "phone",
     },
     {
       label: "Email",
-      value: customer.primaryContact.email,
+      value: customer.PrimaryContact.email,
       type: "email",
       key: "email",
     },
@@ -152,7 +153,7 @@ const CustomerOverview = () => {
   const accountData = [
     {
       label: "Name",
-      value: customer.name,
+      value: customer.accountName,
       type: "text",
       key: "name",
     },
@@ -168,7 +169,7 @@ const CustomerOverview = () => {
       type: "phone",
       key: "phone",
     },
-  ];
+  ];*/
 
   const updateInsuranceData = (d) => {
     let tempCustomerObj = structuredClone(customer);
@@ -338,7 +339,10 @@ const CustomerOverview = () => {
   }, [customer]);
 
   return (
-    <>
+   
+  
+    <> {
+      /*
       <EditableListCard
         title="Account Information"
         fields={accountData}
@@ -361,7 +365,7 @@ const CustomerOverview = () => {
         title="Insurance Information"
         fields={insuranceData}
         updateForm={updateInsuranceData}
-      />
+    /> */ }
     </>
   );
 };

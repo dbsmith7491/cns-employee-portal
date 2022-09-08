@@ -17,6 +17,10 @@ import AddIcon from "@mui/icons-material/Add";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { useEffect, useState } from "react";
+import{ API, graphqlOperation} from "aws-amplify";
+import { listCustomers, getContact} from '../../graphql/queries';
+
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,38 +69,51 @@ const CustomerAccountsActionsBar = styled(Box)(({ theme }) => ({
   margin: theme.spacing(2, 0),
 }));
 
-const Customers = () => {
+
+
+
+
+const CustomerSearch = () => {
   const [customers, setCustomers] = useState([]);
 
-  useEffect(() => {
-    async function getCustomers() {
-      const response = await fetch("/customer");
-
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const customers = await response.json();
-      setCustomers(customers);
+  const getContactFromID = async (id) => {
+    const contact = await API.graphql(graphqlOperation(getContact, {id: id}));
+    return contact.data.getContact;
+  }
+  
+  const getCustomers = async () => {
+    const c = await API.graphql(graphqlOperation(listCustomers));
+    const customersData = [...c.data.listCustomers.items];
+    for(const customer in customersData){
+     console.log(customersData[customer])
+     if(customersData[customer].customerPrimaryContactId){
+      const primaryContact = await getContactFromID(customersData[customer].customerPrimaryContactId);
+      customersData[customer].primaryContact = primaryContact;
+     }
     }
+    setCustomers(c.data.listCustomers.items);
+  }
 
+  useEffect(() => {
     getCustomers();
-    return;
-  }, [customers.length]);
+  }, []);
 
-  const handleSearchChange = () => {};
+  const handleSearchChange = () => { };
 
   let navigate = useNavigate();
+
   const handleCustomerClick = (event, id) => {
     navigate(`/customers/${id}`);
   };
 
+  const handleAddCustomer = (event, id) => {
+    navigate('/customers/createcustomer');
+  }
+
   return (
     <Box sx={{ px: 5, py: 3 }}>
       <Typography variant="h4" component="h1">
-        Customer Accounts
+        Customers
       </Typography>
       <CustomerAccountsActionsBar>
         <Search>
@@ -109,11 +126,11 @@ const Customers = () => {
             inputProps={{ "aria-label": "search for customer" }}
           />
         </Search>
-        <Button variant="contained" startIcon={<AddIcon />}>
-          Create Account
+        <Button variant="contained" startIcon={<AddIcon />} onClick={handleAddCustomer}>
+          Create Customer
         </Button>
       </CustomerAccountsActionsBar>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} variant="outlined">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -126,33 +143,44 @@ const Customers = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map((customer, index) => (
-              <TableRow
-                key={customer._id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="customer">
-                  <Link
-                    underline="none"
-                    onClick={(event) =>
-                      handleCustomerClick(event, customer._id)
-                    }
-                    sx={{
-                      "&:hover": {
-                        cursor: "pointer",
-                      },
-                    }}
+            {customers ? (
+              
+                customers.map((customer, index) => (
+                  <TableRow
+                    key={"customer-" + index}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    {customer.name}
-                  </Link>
-                </TableCell>
-                <TableCell>{customer.dba}</TableCell>
-                <TableCell>{customer.dot}</TableCell>
-                <TableCell>{customer.mc}</TableCell>
-                <TableCell>{customer.phone}</TableCell>
-                <TableCell>{customer.primaryContact.name}</TableCell>
-              </TableRow>
-            ))}
+                    <TableCell component="th" scope="customer">
+                      <Link
+                        underline="none"
+                        onClick={(event) =>
+                          handleCustomerClick(event, customer.id)
+                        }
+                        sx={{
+                          "&:hover": {
+                            cursor: "pointer",
+                          },
+                        }}
+                      >
+                        {customer.accountName}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{customer.dba}</TableCell>
+                    <TableCell>{customer.dot}</TableCell>
+                    <TableCell>{customer.mc}</TableCell>
+                    <TableCell>{customer.phone}</TableCell>
+                    {
+                      customer.primaryContact ? (
+                        <TableCell>{customer.primaryContact.firstName + " " + customer.primaryContact.lastName}</TableCell>
+                      ):
+                      (<TableCell></TableCell>)
+                    }
+                    
+                  </TableRow>
+                ))
+              
+            ) : null}
+
           </TableBody>
         </Table>
       </TableContainer>
@@ -160,4 +188,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomerSearch;

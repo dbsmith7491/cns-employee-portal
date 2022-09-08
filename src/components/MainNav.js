@@ -29,7 +29,7 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor: grey[50],
+  
   overflowX: "hidden",
   width: `calc(${theme.spacing(6)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
@@ -69,6 +69,7 @@ const menuListItems = [
     link: "/customers",
     main: true,
   },
+  /*
   {
     title: "Tests & Orders",
     icon: <Biotech />,
@@ -80,7 +81,7 @@ const menuListItems = [
     icon: <Assessment />,
     link: "/reports",
     main: true,
-  },
+  },*/
 ];
 
 const MainNavList = ({ selectedCustomer }) => {

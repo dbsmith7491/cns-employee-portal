@@ -4,20 +4,24 @@ import {
   ListItemButton,
   ListItemText,
   Box,
+  Paper,
+  Typography
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const menuListItems = [
+  /*
   {
     title: "Information",
     link: "",
-  },
+  },*/
   {
-    title: "Cases",
-    link: "cases",
+    title: "Applicants",
+    link: "applicants",
   },
+  
   {
     title: "Drivers",
     link: "drivers",
@@ -41,7 +45,7 @@ const menuListItems = [
   },
 ];
 
-const CustomerNav = () => {
+const CustomerNav = ({accountName}) => {
   const [currentNav, setCurrentNav] = useState(0);
 
   let navigate = useNavigate();
@@ -52,7 +56,9 @@ const CustomerNav = () => {
   };
 
   return (
-    <Box sx={{ width: "200px", flexShrink: 0 }}>
+
+    <Paper variant="outlined">
+      <Typography sx={{mx: 2, mt: 2, mb: 1, fontSize: 18, fontWeight: "medium"}}>{accountName}</Typography>
       <List dense>
         {menuListItems.map((data, index) => (
           <ListItem key={data.title} disablePadding>
@@ -65,7 +71,8 @@ const CustomerNav = () => {
           </ListItem>
         ))}
       </List>
-    </Box>
+    </Paper>
+
   );
 };
 
