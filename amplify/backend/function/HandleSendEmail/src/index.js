@@ -13,10 +13,10 @@ Amplify Params - DO NOT EDIT */
     region: process.env.REGION
  })
 
- SES = new AWS.SES(),
- processResponse = require('./process-response.js'),
- SENDER_EMAIL = process.env.SENDER_EMAIL,
- UTF8CHARSET = 'UTF-8';
+ const SES = new AWS.SES();
+ const processResponse = require('./process-response.js');
+ const SENDER_EMAIL = process.env.SENDER_EMAIL;
+ const UTF8CHARSET = 'UTF-8';
 
 exports.handler = async event => {
  if (event.httpMethod === 'OPTIONS') {
@@ -52,7 +52,7 @@ exports.handler = async event => {
  if (emailData.replyToEmails && Array.isArray(emailData.replyToEmails)) {
    emailParams.ReplyToAddresses = emailData.replyToEmails;
  }
- 
+
  console.log(emailParams);
  try {
    await SES.sendTemplatedEmail(emailParams).promise();

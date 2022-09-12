@@ -17,6 +17,7 @@ import FormModal from "../FormModal";
 import { useState } from "react";
 import { API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
+import { EnvironmentCredentials } from "aws-sdk";
 
 
 const SendApplicationForm = ({ customerID }) => {
@@ -46,6 +47,7 @@ const SendApplicationForm = ({ customerID }) => {
     setModalOpen(false);
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -53,6 +55,7 @@ const SendApplicationForm = ({ customerID }) => {
       if (result) {
         setModalOpen(false);
         const applicantID = result.data.createApplicant.id;
+        const applicationUrl =  `https://main.d2fc3d44pybhlw.amplifyapp.com/?id=${applicantID}`;
         try {
           async function postData() {
             const apiName = 'sendemailses';
@@ -63,7 +66,7 @@ const SendApplicationForm = ({ customerID }) => {
                    `${form.email}`
                 ],
                 "templateName":"sendApplicationTemplate",
-                "templateData": `{ \"name\":\"${form.firstName}\", \"applicationUrl\": \"https://www.google.com\" }`
+                "templateData": `{ \"name\":\"${form.firstName}\", \"applicationUrl\": \"${applicationUrl}\" }`
              },
             };
             return await API.post(apiName, path, myInit);

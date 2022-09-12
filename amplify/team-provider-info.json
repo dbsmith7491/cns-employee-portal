@@ -19,7 +19,7 @@
       "function": {
         "HandleSendEmail": {
           "deploymentBucketName": "amplify-amplify3cacf7350aae4-staging-184634-deployment",
-          "s3Key": "amplify-builds/HandleSendEmail-4f47553053552f756c38-build.zip",
+          "s3Key": "amplify-builds/HandleSendEmail-334e537a6139586e4b49-build.zip",
           "senderEmail": "dan.smith@cambiumcork.com"
         }
       }
