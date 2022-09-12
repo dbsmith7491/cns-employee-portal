@@ -59,9 +59,6 @@ export const getApplicant = /* GraphQL */ `
       drivingExperiences
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -128,90 +125,8 @@ export const listApplicants = /* GraphQL */ `
         drivingExperiences
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncApplicants = /* GraphQL */ `
-  query SyncApplicants(
-    $filter: ModelApplicantFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncApplicants(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        customerID
-        driversLicenseFront
-        driversLicenseBack
-        medCardPic
-        medicalCardFile
-        firstName
-        lastName
-        otherName
-        birthDate
-        phone
-        ssnNumber
-        email
-        education
-        appliedFor
-        howDidYouHear
-        workedHereBefore
-        workedFrom
-        workedTo
-        reasonForLeaving
-        jobPerformanceIssues
-        currentAddress
-        currentCity
-        currentState
-        currentZip
-        checkaddress
-        previousAddresses
-        previousEmployers
-        qualifications
-        accidentRecords
-        violationRecords
-        driversLicenseNumber
-        driversLicenseState
-        currentLicenseType
-        licenseExpiration
-        licenseRevocation
-        endorsementNone
-        endorsementT
-        endorsementP
-        endorsementN
-        endorsementH
-        endorsementX
-        endorsementS
-        restrictionNone
-        restrictionL
-        restrictionZ
-        restrictionE
-        restrictionO
-        restrictionM
-        restrictionN
-        restrictionV
-        status
-        drivingExperiences
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -224,12 +139,77 @@ export const getCustomer = /* GraphQL */ `
       dot
       mc
       Applicants {
+        items {
+          id
+          customerID
+          driversLicenseFront
+          driversLicenseBack
+          medCardPic
+          medicalCardFile
+          firstName
+          lastName
+          otherName
+          birthDate
+          phone
+          ssnNumber
+          email
+          education
+          appliedFor
+          howDidYouHear
+          workedHereBefore
+          workedFrom
+          workedTo
+          reasonForLeaving
+          jobPerformanceIssues
+          currentAddress
+          currentCity
+          currentState
+          currentZip
+          checkaddress
+          previousAddresses
+          previousEmployers
+          qualifications
+          accidentRecords
+          violationRecords
+          driversLicenseNumber
+          driversLicenseState
+          currentLicenseType
+          licenseExpiration
+          licenseRevocation
+          endorsementNone
+          endorsementT
+          endorsementP
+          endorsementN
+          endorsementH
+          endorsementX
+          endorsementS
+          restrictionNone
+          restrictionL
+          restrictionZ
+          restrictionE
+          restrictionO
+          restrictionM
+          restrictionN
+          restrictionV
+          status
+          drivingExperiences
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       Contacts {
+        items {
+          id
+          customerID
+          firstName
+          lastName
+          phone
+          email
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       PrimaryContact {
         id
@@ -240,33 +220,12 @@ export const getCustomer = /* GraphQL */ `
         email
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerPrimaryContactId
     }
   }
-`;
-
-export const getCustomerApplicants = `
-query GetCustomerApplicants($id: ID!) {
-  getCustomer(id: $id) {
-    Applicants {
-      items {
-        lastName
-        id
-        firstName
-        createdAt
-      }
-    }
-  }
-}
 `;
 
 export const listCustomers = /* GraphQL */ `
@@ -282,46 +241,27 @@ export const listCustomers = /* GraphQL */ `
         dba
         dot
         mc
+        Applicants {
+          nextToken
+        }
+        Contacts {
+          nextToken
+        }
+        PrimaryContact {
+          id
+          customerID
+          firstName
+          lastName
+          phone
+          email
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         customerPrimaryContactId
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncCustomers = /* GraphQL */ `
-  query SyncCustomers(
-    $filter: ModelCustomerFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncCustomers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        accountName
-        dba
-        dot
-        mc
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerPrimaryContactId
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -336,9 +276,6 @@ export const getContact = /* GraphQL */ `
       email
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -358,43 +295,8 @@ export const listContacts = /* GraphQL */ `
         email
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncContacts = /* GraphQL */ `
-  query SyncContacts(
-    $filter: ModelContactFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncContacts(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        customerID
-        firstName
-        lastName
-        phone
-        email
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;

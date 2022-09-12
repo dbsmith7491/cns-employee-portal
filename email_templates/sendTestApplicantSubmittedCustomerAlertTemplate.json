@@ -1,0 +1,9 @@
+{
+    "Source":"Dan Smith <dan.smith@cambiumcork.com>",
+    "Template": "applicantSubmittedCustomerAlertTemplate",
+    "Destination": {
+      "ToAddresses": [ "dbsmith7491@gmail.com"
+      ]
+    },
+    "TemplateData": "{ \"name\":\"Bob Ross\",\"portalURL\":\"https://google.com\" }"
+  }

@@ -9,11 +9,19 @@
       "UnauthRoleName": "amplify-amplify3cacf7350aae4-staging-184634-unauthRole",
       "StackName": "amplify-amplify3cacf7350aae4-staging-184634",
       "StackId": "arn:aws:cloudformation:us-east-1:332409747112:stack/amplify-amplify3cacf7350aae4-staging-184634/919d2a20-2aef-11ed-9dfe-12ef0bbed7cb",
-      "AmplifyAppId": "dvgwn7tpkbshq"
+      "AmplifyAppId": "dvgwn7tpkbshq",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify3cacf7350aae4-staging-184634-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "cnsportal": {}
+      },
+      "function": {
+        "HandleSendEmail": {
+          "deploymentBucketName": "amplify-amplify3cacf7350aae4-staging-184634-deployment",
+          "s3Key": "amplify-builds/HandleSendEmail-4f47553053552f756c38-build.zip",
+          "senderEmail": "dan.smith@cambiumcork.com"
+        }
       }
     }
   }

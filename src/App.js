@@ -18,7 +18,7 @@ import CustomerCompliance from "./components/Customers/CustomerCompliance";
 import CustomerCase from "./components/Customers/CustomerCase";
 import CreateCustomer from "./components/Customers/CreateCustomer";
 import CustomerApplicants from "./components/Customers/CustomerApplicants";
-
+import SendApplicationForm from "./components/Customers/SendApplicationForm";
 import Tests from "./components/Tests";
 import Reports from "./components/Reports";
 import { useState } from "react";
@@ -39,7 +39,7 @@ import {
   View,
   Card,
 } from "@aws-amplify/ui-react";
-import SendApplicationForm from "./components/Customers/SendApplicationForm";
+
 
 Amplify.configure(config);
 
@@ -89,8 +89,10 @@ function App({signOut}) {
               <Route path="customers" element={<CustomerSearch />} />
               <Route path="/customers/createcustomer" element={<CreateCustomer />} />
               <Route path="/customers/:customerID" element={<CustomerLayout />}>
-                <Route path="applicants" index element={<CustomerApplicants />} />
-                <Route path="sendapplication" element={<SendApplicationForm />} />
+              <Route index element={<CustomerOverview />} />
+                <Route path="applicants" element={<CustomerApplicants />}>
+                  <Route path="emailapplication" element={<SendApplicationForm />} />
+                </Route>
                 <Route path="applicants" element={<CustomerApplicants />} />
                 <Route path="drivers" element={<CustomerDrivers />} />
                 <Route path="vehicles" element={<CustomerVehicles />} />

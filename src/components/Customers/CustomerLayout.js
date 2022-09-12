@@ -30,7 +30,7 @@ const CustomerLayout = () => {
   return (
     <>
       {customer ? (     
-        <Container maxWidth="lg" sx={{ mt: 3 }}>
+        <Container maxWidth="xl" sx={{ mt: 3 }}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={3}>
               <CustomerNav accountName={customer.accountName} />

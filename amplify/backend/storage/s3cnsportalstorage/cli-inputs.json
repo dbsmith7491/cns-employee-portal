@@ -1,0 +1,11 @@
+{
+  "resourceName": "s3cnsportalstorage",
+  "bucketName": "cns-portal-storage",
+  "policyUUID": "87d00e3c",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}

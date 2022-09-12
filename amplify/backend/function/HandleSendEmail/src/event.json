@@ -1,0 +1,9 @@
+{
+  "body": {
+    "toEmails": [
+      "dbsmith7491@gmail.com"
+    ],
+    "templateName": "sendApplicationTemplate",
+    "templateData": "{ \"name\":\"Alejandro\", \"applicationURL\": \"https://www.google.com\" }"
+  }
+}

@@ -3,20 +3,21 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Box,
+  Divider,
   Paper,
-  Typography
+  Typography,
+  Button
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const menuListItems = [
-  /*
+  
   {
-    title: "Information",
+    title: "Overview",
     link: "",
-  },*/
+  },
   {
     title: "Applicants",
     link: "applicants",
@@ -46,7 +47,7 @@ const menuListItems = [
 ];
 
 const CustomerNav = ({accountName}) => {
-  const [currentNav, setCurrentNav] = useState(0);
+  const [currentNav, setCurrentNav] = useState(window.sessionStorage.getItem("currentNav") ? window.sessionStorage.getItem("currentNav") : 0);
 
   let navigate = useNavigate();
 
@@ -55,10 +56,21 @@ const CustomerNav = ({accountName}) => {
     setCurrentNav(index);
   };
 
-  return (
+  useEffect(() => {
+    setCurrentNav(JSON.parse(window.sessionStorage.getItem("currentNav")));
+  }, []);
 
+  useEffect(() => {
+    window.sessionStorage.setItem("currentNav", currentNav);
+  }, [currentNav]);
+
+
+
+  return (
+    <>
     <Paper variant="outlined">
-      <Typography sx={{mx: 2, mt: 2, mb: 1, fontSize: 18, fontWeight: "medium"}}>{accountName}</Typography>
+      <Typography sx={{m: 2, fontSize: 18,}}>{accountName}</Typography>
+      <Divider />
       <List dense>
         {menuListItems.map((data, index) => (
           <ListItem key={data.title} disablePadding>
@@ -72,6 +84,7 @@ const CustomerNav = ({accountName}) => {
         ))}
       </List>
     </Paper>
+    </>
 
   );
 };

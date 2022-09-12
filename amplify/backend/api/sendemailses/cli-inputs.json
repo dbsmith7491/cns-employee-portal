@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/send/{applicantId}": {
+      "name": "/send/{applicantId}",
+      "lambdaFunction": "HandleSendEmail",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

@@ -62,9 +62,6 @@ export const createApplicant = /* GraphQL */ `
       drivingExperiences
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -129,9 +126,6 @@ export const updateApplicant = /* GraphQL */ `
       drivingExperiences
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -196,9 +190,6 @@ export const deleteApplicant = /* GraphQL */ `
       drivingExperiences
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -214,12 +205,77 @@ export const createCustomer = /* GraphQL */ `
       dot
       mc
       Applicants {
+        items {
+          id
+          customerID
+          driversLicenseFront
+          driversLicenseBack
+          medCardPic
+          medicalCardFile
+          firstName
+          lastName
+          otherName
+          birthDate
+          phone
+          ssnNumber
+          email
+          education
+          appliedFor
+          howDidYouHear
+          workedHereBefore
+          workedFrom
+          workedTo
+          reasonForLeaving
+          jobPerformanceIssues
+          currentAddress
+          currentCity
+          currentState
+          currentZip
+          checkaddress
+          previousAddresses
+          previousEmployers
+          qualifications
+          accidentRecords
+          violationRecords
+          driversLicenseNumber
+          driversLicenseState
+          currentLicenseType
+          licenseExpiration
+          licenseRevocation
+          endorsementNone
+          endorsementT
+          endorsementP
+          endorsementN
+          endorsementH
+          endorsementX
+          endorsementS
+          restrictionNone
+          restrictionL
+          restrictionZ
+          restrictionE
+          restrictionO
+          restrictionM
+          restrictionN
+          restrictionV
+          status
+          drivingExperiences
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       Contacts {
+        items {
+          id
+          customerID
+          firstName
+          lastName
+          phone
+          email
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       PrimaryContact {
         id
@@ -230,15 +286,9 @@ export const createCustomer = /* GraphQL */ `
         email
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerPrimaryContactId
     }
   }
@@ -255,12 +305,77 @@ export const updateCustomer = /* GraphQL */ `
       dot
       mc
       Applicants {
+        items {
+          id
+          customerID
+          driversLicenseFront
+          driversLicenseBack
+          medCardPic
+          medicalCardFile
+          firstName
+          lastName
+          otherName
+          birthDate
+          phone
+          ssnNumber
+          email
+          education
+          appliedFor
+          howDidYouHear
+          workedHereBefore
+          workedFrom
+          workedTo
+          reasonForLeaving
+          jobPerformanceIssues
+          currentAddress
+          currentCity
+          currentState
+          currentZip
+          checkaddress
+          previousAddresses
+          previousEmployers
+          qualifications
+          accidentRecords
+          violationRecords
+          driversLicenseNumber
+          driversLicenseState
+          currentLicenseType
+          licenseExpiration
+          licenseRevocation
+          endorsementNone
+          endorsementT
+          endorsementP
+          endorsementN
+          endorsementH
+          endorsementX
+          endorsementS
+          restrictionNone
+          restrictionL
+          restrictionZ
+          restrictionE
+          restrictionO
+          restrictionM
+          restrictionN
+          restrictionV
+          status
+          drivingExperiences
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       Contacts {
+        items {
+          id
+          customerID
+          firstName
+          lastName
+          phone
+          email
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       PrimaryContact {
         id
@@ -271,15 +386,9 @@ export const updateCustomer = /* GraphQL */ `
         email
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerPrimaryContactId
     }
   }
@@ -296,12 +405,77 @@ export const deleteCustomer = /* GraphQL */ `
       dot
       mc
       Applicants {
+        items {
+          id
+          customerID
+          driversLicenseFront
+          driversLicenseBack
+          medCardPic
+          medicalCardFile
+          firstName
+          lastName
+          otherName
+          birthDate
+          phone
+          ssnNumber
+          email
+          education
+          appliedFor
+          howDidYouHear
+          workedHereBefore
+          workedFrom
+          workedTo
+          reasonForLeaving
+          jobPerformanceIssues
+          currentAddress
+          currentCity
+          currentState
+          currentZip
+          checkaddress
+          previousAddresses
+          previousEmployers
+          qualifications
+          accidentRecords
+          violationRecords
+          driversLicenseNumber
+          driversLicenseState
+          currentLicenseType
+          licenseExpiration
+          licenseRevocation
+          endorsementNone
+          endorsementT
+          endorsementP
+          endorsementN
+          endorsementH
+          endorsementX
+          endorsementS
+          restrictionNone
+          restrictionL
+          restrictionZ
+          restrictionE
+          restrictionO
+          restrictionM
+          restrictionN
+          restrictionV
+          status
+          drivingExperiences
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       Contacts {
+        items {
+          id
+          customerID
+          firstName
+          lastName
+          phone
+          email
+          createdAt
+          updatedAt
+        }
         nextToken
-        startedAt
       }
       PrimaryContact {
         id
@@ -312,15 +486,9 @@ export const deleteCustomer = /* GraphQL */ `
         email
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerPrimaryContactId
     }
   }
@@ -339,9 +507,6 @@ export const createContact = /* GraphQL */ `
       email
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -359,9 +524,6 @@ export const updateContact = /* GraphQL */ `
       email
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -379,9 +541,6 @@ export const deleteContact = /* GraphQL */ `
       email
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
