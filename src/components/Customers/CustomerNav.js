@@ -22,7 +22,7 @@ const menuListItems = [
     title: "Applicants",
     link: "applicants",
   },
-  
+  /*
   {
     title: "Drivers",
     link: "drivers",
@@ -43,7 +43,7 @@ const menuListItems = [
   {
     title: "Compliance",
     link: "compliance",
-  },
+  },*/
 ];
 
 const CustomerNav = ({accountName}) => {

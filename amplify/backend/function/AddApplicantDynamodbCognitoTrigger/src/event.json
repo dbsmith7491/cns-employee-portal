@@ -1,0 +1,12 @@
+{
+  "request": {
+    "userAttributes": {
+      "sub": "564564554",
+      "customerID_string": "324823490324890",
+      "given_name": "test",
+      "name": "test charles",
+      "family_name": "charles",
+      "email": "dbsmith7491@gmail.com"
+    }
+  }
+}

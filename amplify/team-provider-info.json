@@ -21,6 +21,16 @@
           "deploymentBucketName": "amplify-amplify3cacf7350aae4-staging-184634-deployment",
           "s3Key": "amplify-builds/HandleSendEmail-334e537a6139586e4b49-build.zip",
           "senderEmail": "dan.smith@cambiumcork.com"
+        },
+        "AddApplicantDynamodbCognitoTrigger": {
+          "deploymentBucketName": "amplify-amplify3cacf7350aae4-staging-184634-deployment",
+          "s3Key": "amplify-builds/AddApplicantDynamodbCognitoTrigger-65582b346d3047724976-build.zip",
+          "applicantTableName": "Applicant-upq25bcp7rhujfagwzft3u2ai4-staging"
+        },
+        "createapplicantrecord": {
+          "deploymentBucketName": "amplify-amplify3cacf7350aae4-staging-184634-deployment",
+          "s3Key": "amplify-builds/createapplicantrecord-422b76344d465275564c-build.zip",
+          "corsOrigin": "*"
         }
       }
     }

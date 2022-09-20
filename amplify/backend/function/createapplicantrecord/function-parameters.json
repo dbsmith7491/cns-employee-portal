@@ -1,0 +1,9 @@
+{
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "corsOrigin",
+      "environmentVariableName": "CORS_ORIGIN"
+    }
+  ]
+}

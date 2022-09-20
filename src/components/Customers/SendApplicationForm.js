@@ -9,11 +9,11 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
-  DialogContent
+  DialogContent,
+  Alert
 
 } from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
-import FormModal from "../FormModal";
+import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
 import { API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
@@ -28,7 +28,7 @@ const SendApplicationForm = ({ customerID }) => {
     firstName: "",
     lastName: "",
     email: "",
-    status: "Awaiting Application Submission",
+    status: "Not Submitted",
   });
 
   //handle field changes
@@ -49,7 +49,47 @@ const SendApplicationForm = ({ customerID }) => {
 
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    async function postData() {
+      const apiName = 'sendemailses';
+      const path = '/createapplicant';
+      const myInit = {
+        body: {
+          "customerID_string": customerID,
+          "given_name": form.firstName,
+          "family_name": form.lastName,
+          "email": form.email
+        },
+      };
+
+      return await API.post(apiName, path, myInit);
+    }
+
+    postData();
+
+    /*
+    try{
+      async function postData() {
+        const apiName = 'sendemailses';
+        const path = `/send/${applicantID}`;
+        const myInit = {
+          body: {
+            "toEmails":[
+               `${form.email}`
+            ],
+            "templateName":"sendApplicationTemplate",
+            "templateData": `{ \"name\":\"${form.firstName}\", \"applicationUrl\": \"${applicationUrl}\" }`
+         },
+        };
+        return await API.post(apiName, path, myInit);
+      }
+      postData();
+    }
+    catch(error){
+      console.log("error:" + error);
+    }
+    /*
     try {
       const result = await API.graphql({ query: mutations.createApplicant, variables: { input: form } });
       if (result) {
@@ -82,18 +122,19 @@ const SendApplicationForm = ({ customerID }) => {
     }
     catch (error) {
       console.log("error: " + error.errors[0].message);
-    }
+    }*/
   }
 
   return (
     <>
-      <Button onClick={handleOpen} endIcon={<SendIcon />}>Send Application</Button>
+      <Button onClick={handleOpen} startIcon={<AddIcon />}>New Applicant</Button>
 
       <Dialog open={modalOpen} onClose={handleClose} scroll="paper" maxWidth="sm" >
-        <DialogTitle sx={{ borderBottom: "1px solid", borderColor: "divider" }}>Send Application Email</DialogTitle>
+        <DialogTitle sx={{ borderBottom: "1px solid", borderColor: "divider" }}>Create Applicant</DialogTitle>
         <DialogContent dividers>
+          <Alert severity="info">Completing this step will trigger an email communication to the new applicant with a link and code to access the applicaiton.</Alert>
           <form id="send-email-form" onSubmit={handleSubmit}>
-            <Grid container spacing={3} sx={{ mb: 3 }}>
+            <Grid container spacing={3} sx={{ mb: 3, mt: 1 }}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   id="firstName"
@@ -135,7 +176,7 @@ const SendApplicationForm = ({ customerID }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" form="send-email-form">Send</Button>
+          <Button type="submit" form="send-email-form">Create</Button>
         </DialogActions>
       </Dialog>
 
